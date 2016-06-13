@@ -61,31 +61,35 @@ mkResponse =  Wai.responseLBS status200 [(hContentType, "text/html")]
 
 doIndex :: IO Wai.Response
 doIndex = do
-    P.incCounter pageVisits
-    return $ mkResponse $ LBS.concat [
-            "<a href='/metrics'>Metrics</a>"
-        ,   "<br><br><br>"
-        ,   "What's your favorite color?"
-        ,   "<br>"
-        ,   "<a href='/red'>Red!</a>"
-        ,   "<br>"
-        ,   "<a href='/blue'>Blue!</a>"
-        ,   "<br>"
-        ,   "<a href='/green'>Green!</a>"
-        ]
+  putStrLn  $ "requesting index"
+  P.incCounter pageVisits
+  return $ mkResponse $
+    LBS.concat [ "<a href='/metrics'>Metrics</a>"
+               ,   "<br><br><br>"
+               ,   "What's your favorite color?"
+               ,   "<br>"
+               ,   "<a href='/red'>Red!</a>"
+               ,   "<br>"
+               ,   "<a href='/blue'>Blue!</a>"
+               ,   "<br>"
+               ,   "<a href='/green'>Green!</a>"
+               ]
 
 doRed :: IO Wai.Response
 doRed = do
-    P.withLabel "red" P.incCounter votes
-    return $ mkResponse "Red is alright I guess. <a href='/'>back</a>"
+  putStrLn  $ "voting red"
+  P.withLabel "red" P.incCounter votes
+  return $ mkResponse "Red is alright I guess. <a href='/'>back</a>"
 
 doBlue :: IO Wai.Response
 doBlue = do
-    P.withLabel "blue" P.incCounter votes
-    return $ mkResponse "Blue is whatever. <a href='/'>back</a>"
+  putStrLn  $ "voting blue"
+  P.withLabel "blue" P.incCounter votes
+  return $ mkResponse "Blue is whatever. <a href='/'>back</a>"
 
 doGreen :: IO Wai.Response
 doGreen = do
-    P.withLabel "green" P.incCounter votes
-    return $ mkResponse "Green's ok. <a href='/'>back</a>"
+  putStrLn  $ "voting green"
+  P.withLabel "green" P.incCounter votes
+  return $ mkResponse "Green's ok. <a href='/'>back</a>"
 
