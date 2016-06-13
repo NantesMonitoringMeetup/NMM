@@ -15,6 +15,7 @@ import qualified Network.Wai.Middleware.Prometheus as P
 import qualified Prometheus                        as P
 import qualified Prometheus.Metric.GHC             as P
 import           System.Environment                (getArgs)
+import           System.IO
 
 {-# NOINLINE pageVisits #-}
 pageVisits :: P.Metric P.Counter
@@ -35,6 +36,8 @@ votes = P.unsafeRegisterIO
 
 main :: IO ()
 main = do
+  hSetBuffering stdout NoBuffering
+  hSetBuffering stderr NoBuffering
   -- read port from cmd-line arguments
   [port] <- map read <$> getArgs
   putStrLn $ "Listening at http://localhost:" ++ show port ++ "/"
