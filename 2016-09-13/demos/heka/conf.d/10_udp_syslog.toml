@@ -1,0 +1,15 @@
+[udp_syslog_input]
+type="UdpInput"
+address = "127.0.0.1:514"
+splitter = "NullSplitter"
+decoder = "udp_syslog_decoder"
+
+[udp_syslog_decoder]
+type = "SandboxDecoder"
+memory_limit = 16777216
+filename="lua_decoders/syslog.lua"
+
+[udp_syslog_decoder.config]
+tz='Europe/Paris'
+type= 'toto'
+rsyslog_template='<%PRI%>%TIMESTAMP% %HOSTNAME% %syslogtag:1:32%%msg:::sp-if-no-1st-sp%%msg%'
