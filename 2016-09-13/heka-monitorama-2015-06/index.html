@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Feeding the 100 Armed Giant</title>
+
+    <meta name="description" content="Crunching with Heka.">
+    <meta name="author" content="Rob Miller">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Used to fade in a background when a specific slide state is reached -->
+      <div class="state-background"></div>
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <section>
+          <br /><br />
+          <h1>Feeding the 100 Armed Giant</h1>
+          <script>
+            // Delicously hacky. Look away.
+            if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+          </script>
+        </section>
+
+        <section>
+          <br />
+          <p>Rob Miller</p>
+          <p>Firefox Measurement Team</p>
+          <p>rmiller@mozilla.com</p>
+          <p>@n0nsequitarian</p>
+          <br />
+          <p class="fragment">Thanks for having me!</p>
+          <img class="fragment" src="monitoringlove.jpg">
+        </section>
+
+        <section>
+          <br /><br /><br /><br />
+          <p>Today I'm here to talk about...</p>
+          <p class="fragment">Heka</p>
+        </section>
+
+        <section>
+          <br /><br /><br /><br />
+          <p>Heka is a data processing tool</p>
+          <p class="fragment">Similar to Riemann</p>
+          <p class="fragment">Built for Mozilla</p>
+          <p class="fragment">You might find it useful too</p>
+        </section>
+
+        <section>
+          <br /><br /><br /><br />
+          <p>Why "Heka"?</p>
+        </section>
+
+        <section>
+          <br />
+          <img src="hekaton.jpg" height="400" />
+        </section>
+
+        <section>
+          <br />
+          <h2>Hekatonkheires</h2>
+          <img src="hekaton2.jpg" height="200" /><br />
+          <ul>
+            <li class="fragment">100 arms</li>
+            <li class="fragment">50 heads</li>
+            <li class="fragment">Ugly</li>
+            <li class="fragment">Child of Earth and Sky</li>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Hekatonkheires</h2>
+          <ul>
+            <li class="fragment">50 heads == 50 gaping maws</li>
+            <li class="fragment">One pair of arms for each mouth</li>
+            <li class="fragment">Nom nom nom</li>
+            <li class="fragment">
+              According to Virgil's Aeneid... <br />
+              <span class="fragment">Patron Deity of Stream Processing</span>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Hekatonkheires</h2>
+          <h3 class="fragment">- tonkheires</h3>
+          <h4 class="fragment">= Heka</h4>
+        </section>
+
+        <section>
+          <br />
+          <h2>Heka eats data</h2>
+          <br />
+          <p class="fragment">What do we know about data?</p>
+          <p class="fragment">Research</p>
+          <br />
+          <p class="fragment">Yahoo!ed "data"</p>
+        </section>
+
+        <section>
+          <img src="data00.jpg" height="400">
+        </section>
+
+        <section>
+          <img src="data10.jpg" height="400">
+        </section>
+
+        <section>
+          <img src="data20.jpg" height="400">
+        </section>
+
+        <section>
+          <img src="data30.jpg" height="400">
+        </section>
+
+        <section>
+          <img src="data40.jpg" height="400">
+        </section>
+
+        <section>
+          <img src="data50.jpg" height="400">
+        </section>
+
+        <section>
+          <img src="data60.jpg" height="400">
+        </section>
+
+        <section>
+          <img src="data70.png" height="400">
+        </section>
+
+        <section>
+          <img src="data80.jpg" height="400">
+        </section>
+
+        <section>
+          <img src="data90.jpg" height="400">
+        </section>
+
+        <section>
+          <br />
+          <h2>About Data</h2>
+          <p>
+            <img src="data00.jpg" height="60" />
+            <img src="data10.jpg" height="60" />
+            <img src="data20.jpg" height="60" />
+            <img src="data30.jpg" height="60" />
+          </p>
+          <ul>
+            <li class="fragment">It's blue</li>
+            <li class="fragment">It's made of ones and zeroes</li>
+            <li class="fragment">It surrounds the Earth</li>
+          </ul>
+          <p>
+            <img src="data40.jpg" height="60" class="border:  none" />
+            <img src="data50.jpg" height="60" />
+            <img src="data60.jpg" height="60" />
+            <img src="data70.png" height="60" />
+            <img src="data80.jpg" height="60" />
+          </p>
+        </section>
+
+        <section>
+          <br />
+          <h2>About Data</h2>
+          <ul>
+            <li class="fragment">Comes in many different shapes</li>
+            <li class="fragment">Often poorly formed</li>
+            <li class="fragment">People want to:</li>
+            <ul>
+              <li class="fragment">Input / "Extract"</li>
+              <li class="fragment">Process / "Transform"</li>
+              <li class="fragment">Output / "Load"</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Extract</h2>
+          <ul>
+            <li class="fragment">Gather raw input</li>
+            <ul>
+              <li class="fragment">Load from file(s)</li>
+              <li class="fragment">Receive from network (push)</li>
+              <li class="fragment">Fetch from network (pull)</li>
+              <li class="fragment">Helper processes</li>
+            </ul>
+            <li class="fragment">Split into discrete records / events</li>
+            <li class="fragment">Convert into some uniform format: "message"</li>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Transform</h2>
+          <ul>
+            <li class="fragment">Aggregate & collate</li>
+            <li class="fragment">Watch & crunch</li>
+            <li class="fragment">Emit new data</li>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Load</h2>
+          <ul>
+            <li class="fragment">Encode into some other format</li>
+            <li class="fragment">Output</li>
+            <ul>
+              <li class="fragment">File</li>
+              <li class="fragment">Network</li>
+              <li class="fragment">Visualization</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Heka Architecture</h2>
+          <img src="overview-diagram.png" />
+        </section>
+
+        <section>
+          <br />
+          <h2>Interoperation</h2>
+          <ul>
+            <li class="fragment">RabbitMQ</li>
+            <li class="fragment">Kafka</li>
+            <li class="fragment">TCP / UDP</li>
+            <li class="fragment">HTTP</li>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Interoperation</h2>
+          <ul>
+            <li class="fragment">CollectD</li>
+            <li class="fragment">Syslog</li>
+            <li class="fragment">StatsD / Graphite</li>
+            <li class="fragment">Logstash</li>
+            <li class="fragment">Docker / Logspout</li>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Interoperation</h2>
+          <ul>
+            <li class="fragment">InfluxDB</li>
+            <li class="fragment">ElasticSearch</li>
+            <li class="fragment">OpenTSDB</li>
+            <li class="fragment">Librato</li>
+            <li class="fragment">S3</li>
+            <li class="fragment">Cloudwatch</li>
+            <li class="fragment">PostgreSQL / Redshift</li>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Instead-of-operation</h2>
+          <ul>
+            <li class="fragment">CollectD</li>
+            <li class="fragment">Syslog</li>
+            <li class="fragment">Statsd / Graphite</li>
+            <li class="fragment">Logstash</li>
+            <li class="fragment">Hadoop (!?)</li>
+          </ul>
+        </section>
+
+        <section>
+          <br /><br /><br /><br />
+          <p>Features that make me say</p>
+          <p class="fragment">"NEAT!"</p>
+          <p class="fragment">Neatures</p>
+        </section>
+
+        <section>
+          <br />
+          <h2>Neatures</h2>
+          <img class="fragment" src="sandbox.jpg" />
+        </section>
+
+        <section>
+          <br />
+          <h2>Neatures</h2>
+          <h3>Lua Sandboxes</h3>
+          <ul>
+            <li class="fragment">Arbitrary processing</li>
+            <li class="fragment">Resource constraints</li>
+            <li class="fragment">Serializable state (survives restarts)</li>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Neatures</h2>
+          <h3>Lua Sandboxes</h3>
+          <ul>
+            <li class="fragment">Batteries Included!</li>
+            <ul>
+              <li class="fragment">Circular buffer</li>
+              <li class="fragment">Anomaly detection / Alerting</li>
+              <li class="fragment">CJSON</li>
+              <li class="fragment">Bloom / Cuckoo filters</li>
+              <li class="fragment">Hyperloglog</li>
+              <li class="fragment">lua.math</li>
+              <li class="fragment">Contributions wanted!</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Neatures</h2>
+          <h3>Lua Sandboxes</h3>
+          <ul>
+            <li class="fragment">Receive messages (process_message)</li>
+            <li class="fragment">Periodic signalling (timer_event)</li>
+            <li class="fragment">Declarative configuration</li>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Neatures</h2>
+          <h3>Lua Parsing Expression Grammars</p>
+          <p class="fragment">LPEG >> Regular Expressions</p>
+          <p class="fragment"><a href="http://lpeg.trink.com/share/6395413193107056095">Examples</a></p>
+        </section>
+
+        <section>
+          <br />
+          <h2>Neatures</h2>
+          <h3>Native Heka Streams</h3>
+          <ul>
+            <li class="fragment">Protobuf => efficient serialization</li>
+            <li class="fragment">Used for internal disk buffers</li>
+            <li class="fragment">heka-cat</li>
+            <li class="fragment"><img src="cat.jpg" height="80" /></li>
+            <li class="fragment">heka-s3cat</li>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Neatures</h2>
+          <img class="fragment" src="injection.jpg" height="350" />
+        </section>
+
+        <section>
+          <br />
+          <h2>Neatures</h2>
+          <h3>Sandbox Injection</h3>
+          <ul>
+            <li class="fragment">HMAC signed messages</li>
+            <li class="fragment">Source in message payload</li>
+            <li class="fragment">Config in message field</li>
+            <li class="fragment">SandboxManagerFilter</li>
+            <li class="fragment">heka-sbmgr</li>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Neatures</h2>
+          <h3>LogstreamerInput</h3>
+          <ul>
+            <li class="fragment">Logs aren't a single file</li>
+            <li class="fragment">"Stream" as conceptual element</li>
+            <li class="fragment">Scans entire directory trees</li>
+            <li class="fragment">Understands diverse rotation schemes</li>
+          </ul>
+        </section>
+
+        <section>
+          <br /><br /><br />
+          <p>But what are you doing with it?</p>
+          <p class="fragment">Firefox Telemetry Data Pipeline</p>
+        </section>
+
+        <section>
+          <br />
+          <img src="moz-pipeline.png" height="500" />
+        </section>
+
+        <section>
+          <br />
+          <h2>Firefox Telemetry Data Pipeline</h2>
+          <ul>
+            <li class="fragment">JSON arrives and is parsed by Heka</li>
+            <li class="fragment">Sent to Kafka</li>
+            <li class="fragment">Grabbed by Monitoring Heka for real time alerting</li>
+            <li class="fragment">Grabbed by Data Warehouse Loading Heka, stuffed into S3</li>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Firefox Telemetry Data Pipeline</h2>
+          <ul>
+            <li class="fragment">Reporting Heka instances pull from S3 buckets to generate reports</li>
+            <li class="fragment">Analysis Heka instances can be spun up as needed</li>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Not Perfect</h2>
+          <ul>
+            <li class="fragment">Fast, but not always fast enough</li>
+            <li class="fragment">Go kills us with mem copies</li>
+            <li class="fragment">Channels and goroutines are expensive</li>
+            <li class="fragment">Too many messages in memory increase risk of data loss</li>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>(Experimental)</h2>
+          <h3>Hindsight</h3>
+          <ul>
+            <li class="fragment">Thin C wrapper around the sandbox</li>
+            <li class="fragment">Input, Process, Output modes</li>
+            <li class="fragment">Each mode in a separate process</li>
+            <li class="fragment">Communicate via native Heka streams</li>
+            <li class="fragment">No copy parsing of Heka protobuf messages</li>
+          </ul>
+        </section>
+
+        <section>
+          <br />
+          <h2>Thanks!</h2>
+          <ul>
+            <li>
+              <a href="https://github.com/mozilla-services/heka">https://github.com/mozilla-services/heka</a>
+            </li>
+            <li>
+              <a href="https://github.com/mozilla-services/lua_sandbox">https://github.com/mozilla-services/lua_sandbox</a>
+            </li>
+            <li>
+              <a href="https://github.com/trink/hindsight">https://github.com/trink/hindsight</a>
+            </li>
+            <li>Documentation: <a href="http://hekad.readthedocs.org">http://hekad.readthedocs.org</a></li>
+            <li>Mailing list: heka@mozilla.org</li>
+            <li>IRC: #heka on irc.mozilla.org</li>
+            <li>This presentation: <a href="https://people.mozilla.com/~rmiller/heka-monitorama-2015-06/">https://people.mozilla.com/~rmiller/heka-monitorama-2015-06/</a></li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- The navigational controls UI -->
+      <aside class="controls">
+	    <a class="left" href="#">&#x25C4;</a>
+	    <a class="right" href="#">&#x25BA;</a>
+	    <a class="up" href="#">&#x25B2;</a>
+	    <a class="down" href="#">&#x25BC;</a>
+      </aside>
+
+      <!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+      <div class="progress"><span></span></div>
+
+    </div>
+
+    <!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+    <script src="lib/js/head.min.js"></script>
+
+    <script>
+      // Load the main reveal.js script
+      head.js( 'js/reveal.js', function() {
+      // Parse the query string into a key/value object
+      var query = {};
+
+      location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+      query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+      } );
+
+      // Fires when a slide with data-state=customevent is activated
+      Reveal.addEventListener( 'customevent', function() {
+      console.log( '"customevent" has fired' );
+      } );
+
+      // Fires each time a new slide is activated
+      Reveal.addEventListener( 'slidechanged', function( event ) {
+      // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+      } );
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+
+      theme: query.theme || 'default', // default/neon/beige
+      transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+      });
+      } );
+
+      // Load third party scripts
+      head.js( 'lib/js/classList.js' );
+      head.js( 'lib/js/highlight.js', function() {
+      // Fire off syntax highlighting for potential code samples in the slides
+      hljs.initHighlightingOnLoad();
+      } );
+
+      // If we're runnning the notes server we need to include some additional JS
+      // TODO Is there a better way to determine if we're running the notes server?
+      if( window.location.host === 'localhost:1947' ) {
+      head.js( 'socket.io/socket.io.js', 'plugin/speakernotes/client.js' );
+      }
+    </script>
+
+  </body>
+</html>
