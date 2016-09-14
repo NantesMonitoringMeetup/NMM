@@ -1,0 +1,1 @@
+/usr/share/luasandbox/sandboxes/heka/output/heka_debug.lua
